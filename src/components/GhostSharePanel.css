@@ -1,0 +1,233 @@
+/* ─────────────────────────────────────────────────────────────
+   OBSIDIAN — Ghost Share Component Styles
+   Import in your global CSS or as a CSS module.
+   ───────────────────────────────────────────────────────────── */
+
+/* ── Root ── */
+.obsidian-panel {
+  --obs-bg:      #060606;
+  --obs-surface: rgba(255,255,255,0.025);
+  --obs-border:  rgba(255,255,255,0.07);
+  --obs-text:    #ddd;
+  --obs-muted:   rgba(255,255,255,0.3);
+  --obs-success: #7fff7f;
+  --obs-error:   #ff6060;
+  --obs-warn:    #ffcc44;
+  --obs-mono:    'Courier New', monospace;
+
+  background:   var(--obs-bg);
+  color:        var(--obs-text);
+  font-family:  'Syne', sans-serif;
+  border:       1px solid var(--obs-border);
+  border-radius: 6px;
+  padding:       28px;
+  max-width:     520px;
+  width:         100%;
+  margin:        0 auto;
+}
+
+/* ── Header ── */
+.obs-header {
+  display:         flex;
+  align-items:     center;
+  justify-content: space-between;
+  margin-bottom:   24px;
+}
+.obs-brand  { display:flex; align-items:center; gap:12px }
+.obs-title  { font-weight:800; font-size:13px; letter-spacing:.3em; color:#fff }
+.obs-sub    { font-size:9px; letter-spacing:.15em; color:var(--obs-muted) }
+.obs-chain-pill {
+  font-family:   var(--obs-mono); font-size:10px;
+  padding:       4px 12px;
+  border:        1px solid var(--obs-border);
+  border-radius: 20px; color:var(--obs-muted); transition:all .3s
+}
+.obs-chain-pill.on    { border-color:rgba(127,255,127,.3); color:var(--obs-success) }
+.obs-chain-pill.wrong { border-color:rgba(255,204,68,.3);  color:var(--obs-warn)    }
+
+/* ── Eye ── */
+.obs-eye { transition:filter .4s }
+.obs-eye-processing { filter:drop-shadow(0 0 8px rgba(255,255,255,.4)) }
+.obs-eye-success    { filter:drop-shadow(0 0 12px rgba(127,255,127,.3)) }
+
+/* ── Wallet ── */
+.obs-wallet-row { margin-bottom:16px }
+.obs-wallet-info {
+  display:     flex; align-items:center; gap:10px;
+  flex-wrap:   wrap;
+}
+.obs-addr { font-family:var(--obs-mono); font-size:11px; color:var(--obs-success) }
+
+/* ── Buttons ── */
+.obs-btn {
+  font-family:    'Syne',sans-serif; font-weight:700;
+  font-size:      10px; letter-spacing:.15em; text-transform:uppercase;
+  cursor:         pointer; border-radius:2px; transition:all .2s;
+  text-decoration:none; display:inline-flex; align-items:center;
+}
+.obs-btn:disabled { opacity:.25; cursor:not-allowed }
+.obs-btn-primary {
+  width:100%; padding:13px; justify-content:center;
+  background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.2); color:#fff;
+  margin-top:8px;
+}
+.obs-btn-primary:not(:disabled):hover { background:rgba(255,255,255,.1) }
+.obs-btn-outline {
+  width:100%; padding:12px; justify-content:center;
+  background:transparent; border:1px solid var(--obs-border); color:var(--obs-text)
+}
+.obs-btn-outline:hover { border-color:rgba(255,255,255,.2) }
+.obs-btn-warn {
+  padding:6px 14px; background:transparent;
+  border:1px solid rgba(255,204,68,.3); color:var(--obs-warn)
+}
+.obs-btn-ghost {
+  padding:6px 12px; background:none;
+  border:1px solid rgba(255,255,255,.08); color:var(--obs-muted)
+}
+.obs-btn-ghost:hover { border-color:rgba(255,255,255,.25); color:#fff }
+.obs-btn-xs { padding:3px 10px; font-size:8px }
+
+/* ── Tabs ── */
+.obs-tabs {
+  display:overflow:hidden; display:flex;
+  border:1px solid var(--obs-border); border-radius:3px; overflow:hidden; margin-bottom:20px
+}
+.obs-tab {
+  flex:1; padding:9px; background:transparent; border:none;
+  color:var(--obs-muted); font-family:'Syne',sans-serif; font-weight:700;
+  font-size:10px; letter-spacing:.15em; text-transform:uppercase;
+  cursor:pointer; transition:all .2s;
+}
+.obs-tab.active { background:rgba(255,255,255,.05); color:#fff }
+
+/* ── Panel body ── */
+.obs-panel-body { display:flex; flex-direction:column; gap:0 }
+
+/* ── Inputs ── */
+.obs-label {
+  display:block; font-size:9px; letter-spacing:.15em; color:var(--obs-muted);
+  text-transform:uppercase; margin-bottom:6px; margin-top:14px
+}
+.obs-input {
+  width:100%; background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.06);
+  border-radius:2px; color:var(--obs-text); padding:10px 12px;
+  font-family:var(--obs-mono); font-size:11px; outline:none; transition:border-color .2s;
+  box-sizing:border-box;
+}
+.obs-input:focus  { border-color:rgba(255,255,255,.2) }
+.obs-textarea     { resize:vertical; line-height:1.6 }
+.obs-row-2        { display:grid; grid-template-columns:2fr 1fr; gap:12px }
+
+/* ── Hint ── */
+.obs-hint {
+  padding:10px 14px; background:rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.05); border-radius:2px;
+  font-size:10px; color:rgba(255,255,255,.2); line-height:1.8; margin-bottom:4px
+}
+
+/* ── Warn / Error boxes ── */
+.obs-warn-box  {
+  padding:10px 14px; background:rgba(255,204,68,.04);
+  border:1px solid rgba(255,204,68,.15); border-radius:2px;
+  font-size:10px; color:rgba(255,204,68,.7); line-height:1.7; margin-top:10px
+}
+.obs-error-box {
+  padding:10px 14px; background:rgba(255,80,80,.05);
+  border:1px solid rgba(255,80,80,.2); border-radius:2px;
+  font-family:var(--obs-mono); font-size:11px; color:var(--obs-error); margin-top:10px
+}
+
+/* ── Steps ── */
+.obs-steps { display:flex; align-items:center; margin-bottom:18px }
+.obs-step-item { display:flex; align-items:center; flex:1 }
+.obs-step-dot {
+  width:26px; height:26px; border-radius:50%; flex-shrink:0;
+  border:1px solid rgba(255,255,255,.1); display:flex; align-items:center;
+  justify-content:center; font-size:9px; color:rgba(255,255,255,.2); transition:all .35s;
+  position:relative;
+}
+.obs-step-dot.active {
+  border-color:rgba(255,255,255,.6); color:#fff; background:rgba(255,255,255,.06)
+}
+.obs-step-dot.active::after {
+  content:''; position:absolute; inset:-4px; border-radius:50%;
+  border:1px solid rgba(255,255,255,.1); animation:obsPulse 2s infinite
+}
+.obs-step-dot.done { border-color:rgba(127,255,127,.4); color:var(--obs-success) }
+.obs-step-line {
+  flex:1; height:1px; background:rgba(255,255,255,.05); transition:background .35s
+}
+.obs-step-line.done { background:rgba(127,255,127,.2) }
+
+/* ── Log pane ── */
+.obs-log-pane {
+  background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.05);
+  border-radius:2px; padding:12px 14px; max-height:200px; overflow-y:auto;
+  margin-bottom:4px
+}
+.obs-log-pane.collapsed { max-height:100px }
+.obs-log-line { font-family:var(--obs-mono); font-size:11px; padding:1.5px 0; line-height:1.6 }
+.obs-log-line.info  { color:#555 }
+.obs-log-line.ok    { color:var(--obs-success) }
+.obs-log-line.warn  { color:var(--obs-warn) }
+.obs-log-line.error { color:var(--obs-error) }
+.obs-log-cursor { color:#333; font-family:var(--obs-mono); animation:obsBlink .9s step-end infinite }
+
+/* ── Result ── */
+.obs-success-title {
+  font-size:10px; letter-spacing:.15em; color:var(--obs-success);
+  text-transform:uppercase; margin-bottom:16px
+}
+.obs-copy-row { margin-bottom:10px }
+.obs-copy-box {
+  display:flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06);
+  border-radius:2px; padding:8px 10px
+}
+.obs-copy-box.warn { border-color:rgba(255,204,68,.2) }
+.obs-copy-val {
+  flex:1; font-family:var(--obs-mono); font-size:10px; color:#777;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap
+}
+.obs-copy-actions { display:flex; gap:6px; flex-shrink:0 }
+
+.obs-trace-box {
+  padding:10px 14px; background:rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.05); border-radius:2px;
+  font-size:10px; color:rgba(255,255,255,.2); line-height:1.9; margin:12px 0
+}
+.obs-trace-title { color:rgba(255,255,255,.35); font-weight:600; margin-bottom:4px }
+.obs-link { color:rgba(255,255,255,.35); text-decoration:none }
+.obs-link:hover { color:#fff }
+
+/* ── Reveal ── */
+.obs-reveal-block { margin-top:16px }
+.obs-reveal-box {
+  padding:14px; background:rgba(0,0,0,.5);
+  border:1px solid rgba(127,255,127,.15); border-radius:2px;
+  font-family:var(--obs-mono); font-size:12px; color:#aaffaa;
+  line-height:1.7; white-space:pre-wrap; word-break:break-all; margin-top:6px
+}
+.obs-reveal-note {
+  margin-top:8px; font-family:var(--obs-mono); font-size:10px; color:rgba(255,255,255,.2)
+}
+
+/* ── Footer ── */
+.obs-footer {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:24px;
+  border-top:1px solid rgba(255,255,255,.04); padding-top:16px
+}
+.obs-contract-badge {
+  padding:8px; background:rgba(255,255,255,.015);
+  border:1px solid rgba(255,255,255,.04); border-radius:3px
+}
+.obs-contract-name {
+  font-size:8px; letter-spacing:.08em; color:rgba(255,255,255,.2);
+  text-transform:uppercase; margin-bottom:3px
+}
+.obs-contract-addr { font-family:var(--obs-mono); font-size:9px; color:rgba(255,255,255,.2) }
+
+/* ── Animations ── */
+@keyframes obsPulse { 0%,100%{opacity:.5;transform:scale(1)} 50%{opacity:.2;transform:scale(1.2)} }
+@keyframes obsBlink { 0%,100%{opacity:1} 50%{opacity:0} }
