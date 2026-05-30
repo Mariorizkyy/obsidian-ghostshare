@@ -32,6 +32,8 @@ interface CenterPanelProps {
   onReveal: (encodedPayload: string, recipientPrivateKey: string) => void;
   onReset: () => void;
   lastSealedPayloadUrl: string | null;
+  lastEphemeralPrivKey?: string | null;
+  lastTxHash?: string | null;
   lastSealedPayloadRaw: string | null;
   decryptedSecret: string | null;
   errorMessage: string | null;
@@ -46,6 +48,8 @@ export function CenterPanel({
   onReveal,
   onReset,
   lastSealedPayloadUrl,
+  lastEphemeralPrivKey,
+  lastTxHash,
   lastSealedPayloadRaw,
   decryptedSecret,
   errorMessage,
@@ -343,7 +347,9 @@ export function CenterPanel({
                         {lastSealedPayloadUrl}
                       </span>
                       <button
-                        onClick={() => copyToClipboard(lastSealedPayloadUrl, setUrlCopied)}
+                        onClick={() => copyToClipboard(lastSealedPayloadUrl,
+  lastEphemeralPrivKey,
+  lastTxHash, setUrlCopied)}
                         className="text-zinc-400 hover:text-white p-1 hover:bg-zinc-900 rounded transition-colors"
                       >
                         {urlCopied ? (
@@ -379,6 +385,27 @@ export function CenterPanel({
                 </div>
               </div>
 
+              {/* ── Ritual on-chain fields ── */}
+              {lastTxHash && (
+                <div className="mt-4 p-3 rounded-lg bg-zinc-950/60 border border-emerald-900/40 space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[8px] text-emerald-600 tracking-widest uppercase">✓ RITUAL CHAIN TX</span>
+                    <a href={`https://explorer.ritualfoundation.org/tx/${lastTxHash}`} target="_blank" rel="noreferrer" className="font-mono text-[8px] text-zinc-500 hover:text-zinc-300 flex items-center gap-1">VIEW ON EXPLORER ↗</a>
+                  </div>
+                  <div className="font-mono text-[9px] text-emerald-700 break-all">{lastTxHash}</div>
+                </div>
+              )}
+              {lastEphemeralPrivKey && (
+                <div className="mt-3 p-3 rounded-lg bg-amber-950/20 border border-amber-900/40 space-y-2">
+                  <span className="font-mono text-[8px] text-amber-500 tracking-widest uppercase">⚠ EPHEMERAL PRIVATE KEY — SEND SECURELY TO RECIPIENT</span>
+                  <div className="flex items-center justify-between bg-black/40 p-2 rounded border border-amber-900/30">
+                    <span className="font-mono text-[9px] text-amber-700 break-all flex-1">{lastEphemeralPrivKey.slice(0,30)}...</span>
+                    <button onClick={() => { navigator.clipboard.writeText(lastEphemeralPrivKey); }} className="ml-2 shrink-0 text-zinc-500 hover:text-white p-1 bg-zinc-900/45 hover:bg-zinc-800 rounded transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    </button>
+                  </div>
+                </div>
+              )}
               {/* Back to Compose */}
               <motion.button
                 onClick={onReset}
